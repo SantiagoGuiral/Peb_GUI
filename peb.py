@@ -9,6 +9,33 @@ pstring=""
 qxstring=""
 tramoArg=""
 
+def restart():
+    global data,probTramo,qxtmp,pTramo,pstring,qxstring,tramoArg
+    data=[]
+    probTramo=[]
+    qxtmp=[]
+    pTramo=[]
+    pstring=""
+    qxstring=""
+    tramoArg=""
+    i1.delete(0,"end")
+    i2.delete(0,"end")
+    i3.delete(0,"end")
+    clearLabels()
+
+def clearLabels():
+    lerror=tk.Label(fl3,text="")
+    lerror.place(relx=0.55,rely=0.42,relwidth=0.4,relheight=0.30)
+    lqx=tk.Label(fl3,text="")
+    lqx.place(relx=0.05,rely=0.42,relwidth=0.4,relheight=0.30)
+    ldata=tk.Label(fl3,text="")
+    ldata.place(relx=0.05,rely=0.06,relwidth=0.4,relheight=0.30)
+    lresult=tk.Label(fl3,text="")
+    lresult.place(relx=0.05,rely=0.84,relwidth=0.9,relheight=0.04)
+    ltramo=tk.Label(fl3,text="")
+    ltramo.place(relx=0.55,rely=0.06,relwidth=0.4,relheight=0.30)
+    
+
 def printqx(x):
     global qxstring
     qxstring=qxstring + f'{x:.3}\n'
@@ -17,7 +44,7 @@ def printqx(x):
 
 def printError(error):
     global pstring
-    pstring=pstring + f'{error:.3%}\n'
+    pstring=pstring + f'{error:.6%}\n'
     lerror=tk.Label(fl3,text=pstring)
     lerror.place(relx=0.55,rely=0.42,relwidth=0.4,relheight=0.30)
 
@@ -32,8 +59,8 @@ def init_data(tr,a,b):
 def tramo_data(at,vt,n):
     global tramoArg
     tramoArg=tramoArg+f'At:{at} Vt:{vt} N:{n}\n'
-    ldata=tk.Label(fl3,text=tramoArg)
-    ldata.place(relx=0.55,rely=0.06,relwidth=0.4,relheight=0.30)
+    ltramo=tk.Label(fl3,text=tramoArg)
+    ltramo.place(relx=0.55,rely=0.06,relwidth=0.4,relheight=0.30)
 
 def tr_info(tramo):
     At,Vt,N=[float(i) for i in tramo.split(",")]
@@ -61,12 +88,17 @@ root=tk.Tk()
 root.title("Probabilidad de error en una red de enlaces")
 root.geometry("900x600+600+200")
 
-label=tk.Label(root,text="Software para encontrar el valor de error de probabilidad de bit en una red de enlaces")
-label.place(relwidth=0.9,relheight=0.1,relx=0.05)
+title=tk.Frame(root)
+title.place(rely=0.02,relwidth=0.9,relheight=0.06,relx=0.05)
+
+label=tk.Label(title,text="Software para encontrar el valor de error de probabilidad de bit en una red de enlaces")
+label.place(relx=0.05,relwidth=0.70,relheight=0.9)
+
+brestart=tk.Button(title,text="Reiniciar",command=restart)
+brestart.place(relx=0.80,relwidth=0.15,relheight=0.9)
 
 frame=tk.Frame(root)
 frame.place(rely=0.1,relwidth=0.9,relheight=0.9,relx=0.05)
-
 
 fl1=tk.LabelFrame(frame,text="Ingresa los valores")
 fl1.place(relwidth=0.48,relheight=0.45)
@@ -109,5 +141,6 @@ l7=tk.Label(fl3,text="Error tramo:")
 l7.place(relx=0.55,rely=0.38,relwidth=0.4,relheight=0.03)
 lr=tk.Label(fl3,text="La probabilidad de error total es:")
 lr.place(relx=0.05,rely=0.80,relwidth=0.9,relheight=0.03)
+
 
 root.mainloop()
