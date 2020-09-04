@@ -1,5 +1,5 @@
 import tkinter as tk
-import peb_fun as pfun
+import fun_peb as pfun
 
 data=[]
 probTramo=[]
@@ -18,9 +18,6 @@ def restart():
     pstring=""
     qxstring=""
     tramoArg=""
-    i1.delete(0,"end")
-    i2.delete(0,"end")
-    i3.delete(0,"end")
     clearLabels()
 
 def clearLabels():
@@ -55,6 +52,9 @@ def init_data(tr,a,b):
     txt=f'Tramos: {tr}\nNumerador Q(x): {a}\nDenominador Q(x): {b}'
     ldata=tk.Label(fl3,text=txt)
     ldata.place(relx=0.05,rely=0.06,relwidth=0.4,relheight=0.30)
+    i1.delete(0,"end")
+    i2.delete(0,"end")
+    i3.delete(0,"end")
 
 def tramo_data(at,vt,n):
     global tramoArg
@@ -85,8 +85,8 @@ def prob():
 
 
 root=tk.Tk()
-root.title("Probabilidad de error en una red de enlaces")
-root.geometry("900x600+600+200")
+root.title("Probabilidad De Error En Una Red De Enlaces")
+root.geometry("950x700+600+200")
 
 title=tk.Frame(root)
 title.place(rely=0.02,relwidth=0.9,relheight=0.06,relx=0.05)
@@ -94,7 +94,7 @@ title.place(rely=0.02,relwidth=0.9,relheight=0.06,relx=0.05)
 label=tk.Label(title,text="Software para encontrar el valor de error de probabilidad de bit en una red de enlaces")
 label.place(relx=0.05,relwidth=0.70,relheight=0.9)
 
-brestart=tk.Button(title,text="Reiniciar",command=restart)
+brestart=tk.Button(title,text="Reiniciar",command=restart,fg='white',bg='#ff0000')
 brestart.place(relx=0.80,relwidth=0.15,relheight=0.9)
 
 frame=tk.Frame(root)
@@ -113,22 +113,22 @@ i1=tk.Entry(fl1)
 i1.place(relx=0.05,rely=0.225,relwidth=0.9,relheight=0.15)
 l2=tk.Label(fl1,text="Numerador q(x):")
 l2.place(relx=0.05,rely=0.425,relwidth=0.4,relheight=0.15)
-l3=tk.Label(fl1,text="Denominador(qx):")
+l3=tk.Label(fl1,text="Denominador q(x):")
 l3.place(relx=0.55,rely=0.425,relwidth=0.4,relheight=0.15)
 i2=tk.Entry(fl1)
 i2.place(relx=0.05,rely=0.625,relwidth=0.4,relheight=0.15)
 i3=tk.Entry(fl1)
 i3.place(relx=0.55,rely=0.625,relwidth=0.4,relheight=0.15)
-b1=tk.Button(fl1,text="Ingresar datos iniciales",command=lambda:init_data(i1.get(),i2.get(),i3.get()))
+b1=tk.Button(fl1,text="Ingresar datos iniciales",command=lambda:init_data(i1.get(),i2.get(),i3.get()),bg='black',fg='white')
 b1.place(relx=0.05,rely=0.825,relwidth=0.9,relheight=0.15)
 
 l4=tk.Label(fl2,text="Ingrese At,V,N (separado por comas)")
 l4.place(relx=0.05,rely=0.15,relwidth=0.9,relheight=0.15)
 i4=tk.Entry(fl2)
 i4.place(relx=0.05,rely=0.4,relwidth=0.9,relheight=0.15)
-b2=tk.Button(fl2,text="Ingresar",command=lambda:tr_info(i4.get()))
+b2=tk.Button(fl2,text="Ingresar",command=lambda:tr_info(i4.get()),fg='white',bg='black')
 b2.place(relx=0.05,rely=0.65,relwidth=0.4,relheight=0.15)
-b3=tk.Button(fl2,text="Calcular",command=prob)
+b3=tk.Button(fl2,text="Calcular",command=prob,fg='white',bg='black')
 b3.place(relx=0.55,rely=0.65,relwidth=0.4,relheight=0.15)
 
 l4=tk.Label(fl3,text="Datos:")
